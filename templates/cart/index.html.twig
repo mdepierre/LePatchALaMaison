@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - Le Patch à la Maison
+{% endblock %}
+
+{% block content %}
+
+
+	<div class="container">
+		<div class="p-4 mb-5">
+			<h1>Mon panier</h1>
+            
+            {% if cart|length > 0 %}
+
+			<div class="row align-items-start">
+				<div class="col-lg-8">
+
+					{% set total_price = null %}
+                    {% set total_quantity = null %}
+                     
+
+					{% for product_in_cart in cart %}
+						<div class="row mb-4 shadow p-2 bg-cart-custom">
+							<div class="col-sm">
+								<div>
+									<div><img src="/uploads/{{ product_in_cart.product.illustration }}" alt "{{ product_in_cart.product.name }}" class="img-fluid"></div>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div>
+									<div>{{ product_in_cart.product.name }}</div>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div>
+									<div>Qté : <a href="{{ path('decrease_to_cart', { 'id': product_in_cart.product.id }) }}"><i class="far fa-minus-square"></i></a> {{ product_in_cart.quantity }} <a href="{{ path('add_to_cart', { 'id': product_in_cart.product.id }) }}"><i class="far fa-plus-square"></a></i></div>
+								</div>
+								<div class="cart-product-price-item">
+									<div class="product-price">{{ ((product_in_cart.product.price * product_in_cart.quantity) / 100) |number_format(2, ',') }} € </div>
+								</div>
+							</div>
+                            <div class="col-sm col-sm-auto">
+                                <a href="{{ path ('delete_to_cart', {'id' : product_in_cart.product.id }) }}" ><i class="far fa-trash-alt"></i></a>
+                            </div>
+						</div>
+
+                        {% set total_price = total_price + (product_in_cart.product.price * product_in_cart.quantity) %}
+                        {% set total_quantity = total_quantity + product_in_cart.quantity %}
+					{% endfor %}
+				</div>
+				<div class="col-lg-4">
+					<div class="shadow p-4">
+						<h2>Récapitulatif</h2>
+						<p>Nombre d'articles : {{ total_quantity }}</p>
+						<p class="cart-total">Total : {{ (total_price / 100) |number_format(2, ',') }} €</p>
+						<a href="" class="btn btn-success">Valider mon panier</a>
+					</div>
+				</div>
+			</div>
+
+            {% else %}
+            <div class="alert alert-info">
+            <p>Votre panier est vide.</p>
+            </div>
+            {% endif %}
+		</div>
+	</div>
+{% endblock %}

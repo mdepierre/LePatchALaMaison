@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - Le Patch à la Maison{% endblock %}
+
+{% block content %}
+
+    <h1> Mon compte</h1>
+
+    <h4>Bienvenue, {{app.user.firstname}} {{app.user.lastname}} ! </h4>
+
+    <p>Dans votre espace, vous pouvez enregistrer et modifier vos informations personnelles</p>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('account_password') }}">Modifier mon mot de passe </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Déconnexion</a>
+        </li>
+    </ul>
+
+{% endblock %}
