@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Echec de payement - Le Patch à la Maison{% endblock %}
+
+{% block content %}
+<h1>Echec de payement !</h1>
+
+<p>Il semblerait que votre payement ait échoué. Vous pouvez cliquer sur "Réessayer" pour une autre tentative de payement.</p>
+
+<button class="btn btn-success"><a href="{{ path('order') }}">Réessayer</a></button>
+
+{% endblock %}

@@ -68,6 +68,17 @@ class Address
      */
     private $phone_number;
 
+    public function __toString()
+    {
+        if ($this->getCompany()) {
+            return $this->getName().' : '.$this->getFirstname().''.$this->getLastname().' - '.$this->getCompany().', '.$this->getAddress().' '.$this->getPostalCode().' '.$this->getCity().', Tél : '.$this->getPhoneNumber();
+        }
+        else {
+            return $this->getName().' : '.$this->getFirstname().''.$this->getLastname().', '.$this->getAddress().' '.$this->getPostalCode().' '.$this->getCity().', Tél : '.$this->getPhoneNumber();
+        }
+        
+    }
+
     public function getId(): ?int
     {
         return $this->id;

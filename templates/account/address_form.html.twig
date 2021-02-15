@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer une adresse - Le Patch à la Maison{% endblock %}
+
+{% block content %}
+
+	<h1>Gérer une adresse</h1>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('account_address') }}">Retour à Mes adresses</a>
+    </li>
+	</ul>
+
+  {% if notification %}
+        <div class="alert alert-info">
+            {{ notification }}
+        </div>
+    {% endif %}
+
+  {{ form(form) }}  
+
+{% endblock %}

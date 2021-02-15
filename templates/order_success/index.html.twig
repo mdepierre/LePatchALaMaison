@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande validé - Le Patch à la Maison{% endblock %}
+
+{% block content %}
+<h1>Paiement validé !</h1>
+<h2>Nous vous remercions pour votre commande !</h2>
+
+<p>Votre commande porte le numéro  {{ order.checkoutid }}. 
+Vous pouvez retrouver le récapitulatif de votre commande sur votre compte client, rubrique <a href="">Mes commandes </a>.
+</p>
+{% endblock %}

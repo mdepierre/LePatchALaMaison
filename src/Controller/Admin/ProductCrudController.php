@@ -29,8 +29,8 @@ class ProductCrudController extends AbstractCrudController
             ->setBasePath(' uploads/')
             ->setUploadDir('public/uploads')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
-            ->setFormType(FileUploadType::class)
-            ->setRequired(false),
+            // ->setRequired(false)
+            ->setFormType(FileUploadType::class),            
             TextField::new('subtitle'),
             TextareaField::new('description'),
             MoneyField::new('price')->setCurrency('EUR'),

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes adresses - Le Patch à la Maison
+{% endblock %}
+
+{% block content %}
+
+	<h1>Mes adresses</h1>
+
+	<p>Vous pouvez créer, modifier et supprimer vos adresses.</p>
+
+	<p>
+		<a href="{{ path('account_address_add') }}" class="btn btn-info btn-sm float-sm-right">Ajouter une adresse</a>
+	</p>
+
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item">
+			<a class="nav-link" href="{{ path('account') }}">Retour à Mon compte</a>
+		</li>
+	</ul>
+
+
+	{% if app.user.addresses|length == 0 %}
+		<p>Aucune adresse enregistrée dans votre compte client.</p>
+		<p>Pour en ajouter une, veuillez cliquer sur "Ajouter une adresse".</p>
+	{% else %}
+		<div class="row mb-5 mt-3">
+			{% for my_addresses in app.user.addresses %}
+				<div class="col-md-6 mb-4">
+					<div class="shadow px-4 pt-4 text-center">
+						<h3>{{ my_addresses.name }}</h3>
+						<div class="mt-3">
+							<p>{{ my_addresses.firstname }}
+								{{ my_addresses.lastname }}
+								{% if my_addresses.company %}
+									<span class="text-uppercase">
+										-
+										{{ my_addresses.company }}</span>
+								{% endif %}
+							</p>
+							<p>{{ my_addresses.address }}</p>
+							<p>{{ my_addresses.postalcode }}
+								{{ my_addresses.city }},
+								{{ my_addresses.country }}</p>
+							<p>Tél :
+								{{ my_addresses.phonenumber }}</p>
+						</div>
+						<div class="row text-center mt-4">
+							<div class="col-sm-6 pt-3 pb-2 border-top">
+								<p>
+									<a href="{{ path('account_address_edit', {'id': my_addresses.id}) }}">Modifier</a>
+								</p>
+							</div>
+							<div class="col-sm-6 pt-3 pb-2 border-top">
+								<p>
+									<a href="{{ path('account_address_delete', {'id': my_addresses.id}) }}">Supprimer</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+{% endblock %}

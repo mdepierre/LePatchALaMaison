@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Le Patch à la Maison
+{% endblock %}
+
+{% block content %}
+
+	<h1>Je passe ma commande</h1>
+
+	<div class="row">
+		
+		<div class="col-md-6 border pt-3 mb-4">
+			<h3>Récapitulatif de votre panier : </h3>
+			{% set total_price = null %}
+
+			{% for product_in_cart in cart %}
+			<div class="row py-3">
+			<div class="col-md-2"><img class="img-thumbnail" src="/uploads/{{ product_in_cart.product.illustration }}" alt "{{ product_in_cart.product.name }}" class="img-fluid"></div>
+			<div class="col-md-6">{{ product_in_cart.product.name }} </div>
+			<div class="col-md-1 text-center">x{{ product_in_cart.quantity }} </div> 
+			<div class="col-md-3 text-center">{{ ((product_in_cart.product.price * product_in_cart.quantity) / 100) |number_format(2, ',') }} € </div>
+			{% set total_price = total_price + (product_in_cart.product.price * product_in_cart.quantity) %}
+			</div>
+			{% endfor %}
+			<div class="mt-3">
+			<p class="cart-total text-center">Total : {{ (total_price / 100) |number_format(2, ',') }} €</p>
+						
+			</div>
+		</div>
+
+<div class="col-md-6"><h2>Choisir mon adresse de livraison</h2>
+				{{ form_start(form, {action:path('order_summary')}) }}
+				{{ form_label(form.addresses, 'Choisissez votre adresse de livraison :') }}
+				<p><a href="{{ path('account_address_add') }}">Ajouter un nouvealle adresse</a></p>
+				{{ form_end(form) }}
+		</div>
+
+	</div>
+	
+
+{% endblock %}
