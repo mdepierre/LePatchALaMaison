@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -31,6 +33,18 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
     private $illustration;
+    
+    /**
+     * @Vich\UploadableField(mapping="products_uploads", fileNameProperty="illustration")
+     * @var File
+     */
+    private $illustrationFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -90,6 +104,39 @@ class Product
     public function setIllustration(string $illustration): self
     {
         $this->illustration = $illustration;
+        if ($illustration) {
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File/null
+     */
+
+    public function getIllustrationFile(): ?File
+    {
+        return $this->illustrationFile;
+    }
+
+    /**
+     * @param File/null $illustrationFile
+     */
+
+    public function setIllustrationFile(File $illustrationFile = null)
+    {
+        $this->illustrationFile = $illustrationFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
