@@ -40,7 +40,13 @@
 
 		<div class="col-md-6">
 			<h2>Adresse de livraison :</h2>
-      <p>{{ deliveryaddress }}</p>
+      <p>{{ deliveryfirstname }} {{ deliverylastname }}
+      {% if deliverycompany is not empty %}
+       - {{ deliverycompany }} 
+      {% endif %}
+      </p>
+      <p>{{ deliveryaddress }} {{ deliverypostalcode }} {{ deliverycity }}</p>
+      <p>Tél : {{ deliveryphonenumber }}</p>
       <div>
       <p class="text-center mt-4"><a class="btn btn-success" id="checkout-button">Payer {{ (total_price / 100) |number_format(2, ',') }} €</a></p>
       </div>

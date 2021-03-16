@@ -47,7 +47,7 @@ class AddressType extends AbstractType
                     'placeholder' => "Veuillez saisir l'adresse"
                 ]
             ])
-            ->add('postal_code', NumberType::class, [
+            ->add('postal_code', TextType::class, [
                 'label' => "Code postal",
                 'attr' => [
                     'placeholder' => "Veuillez saisir le code postal de l'adresse"
@@ -65,7 +65,7 @@ class AddressType extends AbstractType
                     'placeholder' => "Veuillez saisir le pays de l'adresse"
                 ]
             ])
-            ->add('phone_number', NumberType::class, [
+            ->add('phone_number', TextType::class, [
                 'label' => "Téléphone",
                 'attr' => [
                     'placeholder' => "Veuillez saisir le numéro de téléphone"
