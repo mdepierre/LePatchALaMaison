@@ -56,17 +56,26 @@ class OrderController extends AbstractController
             $date = new \DateTime();
             $delivery = $form->get('addresses')->getData();
 
-            $order_delivery = $delivery->getFirstname() . ' ' . $delivery->getLastname();
-            if ($delivery->getCompany()) {
-                $order_delivery .= ', ' . $delivery->getCompany();
-            }
-            $order_delivery .= ', ' . $delivery->getAddress() . ' ' . $delivery->getPostalCode() . ' ' . $delivery->getCity() . ' ' . $delivery->getCountry();
-            $order_delivery .= ', ' . $delivery->getPhoneNumber();
+            $order_firstname = $delivery->getFirstname();
+            $order_lastname = $delivery->getLastname();
+            $order_company = $delivery->getCompany();
+            $order_address = $delivery->getAddress();
+            $order_postal_code = $delivery->getPostalCode();
+            $order_city = $delivery->getCity();
+            $order_country = $delivery->getCountry();
+            $order_phonenumber = $delivery->getPhoneNumber();
 
             $order = new Order();
             $order->setUser($this->getUser()); 
             $order->setCreationDate($date);
-            $order->setDeliveryAddress($order_delivery);
+            $order->setFirstname($order_firstname);
+            $order->setLastname($order_lastname);
+            $order->setCompany($order_company);
+            $order->setAddress($order_address);
+            $order->setPostalCode($order_postal_code);
+            $order->setCity($order_city);
+            $order->setCountry($order_country);
+            $order->setPhoneNumber($order_phonenumber);
             $order->setPaid(0);
 
             $this->entityManager->persist($order);
@@ -86,7 +95,13 @@ class OrderController extends AbstractController
             
             return $this->render('order/add.html.twig', [
                 'cart' => $cart->getCartDetails(),
-                'deliveryaddress' => $order_delivery,
+                'deliveryfirstname' => $order_firstname,
+                'deliverylastname' => $order_lastname,
+                'deliverycompany' => $order_company,
+                'deliveryaddress' => $order_address,
+                'deliverypostalcode' => $order_postal_code,
+                'deliverycity' => $order_city,
+                'deliveryphonenumber' => $order_phonenumber,
                 'orderid' => $order->getId()
             ]);
         }

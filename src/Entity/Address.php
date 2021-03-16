@@ -49,7 +49,7 @@ class Address
     private $address;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $postal_code;
 
@@ -64,7 +64,7 @@ class Address
     private $country;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $phone_number;
 
@@ -156,12 +156,12 @@ class Address
         return $this;
     }
 
-    public function getPostalCode(): ?int
+    public function getPostalCode(): ?string
     {
         return $this->postal_code;
     }
 
-    public function setPostalCode(int $postal_code): self
+    public function setPostalCode(string $postal_code): self
     {
         $this->postal_code = $postal_code;
 
@@ -192,12 +192,12 @@ class Address
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->phone_number;
     }
 
-    public function setPhoneNumber(int $phone_number): self
+    public function setPhoneNumber(string $phone_number): self
     {
         $this->phone_number = $phone_number;
 
