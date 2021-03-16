@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -46,7 +47,7 @@ class AddressType extends AbstractType
                     'placeholder' => "Veuillez saisir l'adresse"
                 ]
             ])
-            ->add('postal_code', IntegerType::class, [
+            ->add('postal_code', NumberType::class, [
                 'label' => "Code postal",
                 'attr' => [
                     'placeholder' => "Veuillez saisir le code postal de l'adresse"
@@ -64,7 +65,7 @@ class AddressType extends AbstractType
                     'placeholder' => "Veuillez saisir le pays de l'adresse"
                 ]
             ])
-            ->add('phone_number', IntegerType::class, [
+            ->add('phone_number', NumberType::class, [
                 'label' => "Téléphone",
                 'attr' => [
                     'placeholder' => "Veuillez saisir le numéro de téléphone"

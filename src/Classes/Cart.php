@@ -67,7 +67,7 @@ class Cart {
 
         foreach ($this->get() as $id => $quantity) {
 
-            $product_object = $this->entityManager->getRepository(Product::class)->findOneBy((['id' => $id]));
+            $product_object = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]);
 
             if (!$product_object) {
                 $this->delete($id);

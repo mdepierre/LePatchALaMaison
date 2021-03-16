@@ -54,7 +54,7 @@ class AccountAddressController extends AbstractController
                 return $this->redirectToRoute('order');
             }
             else {
-                $notification = "L'adresse a bien été ajoutée";
+                $notification = "L'adresse été ajoutée avec succès";
             }            
 
         }
@@ -73,7 +73,7 @@ class AccountAddressController extends AbstractController
     {
         $notification = null;
 
-        $address = $this->entityManager->getRepository(Address::class)->findOneById($id);
+        $address = $this->entityManager->getRepository(Address::class)->findOneBy(['id' => $id]);
 
         if (!$address || $address->getUser() != $this->getUser()) {
             return $this->redirectToRoute('account_address');
@@ -87,7 +87,7 @@ class AccountAddressController extends AbstractController
 
             $this->entityManager->flush();
 
-            $notification = "L'adresse a bien été modifiée";
+            $notification = "L'adresse été modifiée avec succès";
         }
 
         return $this->render('account/address_form.html.twig', [
@@ -102,7 +102,7 @@ class AccountAddressController extends AbstractController
     
     public function delete($id): Response
     {
-        $address = $this->entityManager->getRepository(Address::class)->findOneById($id);
+        $address = $this->entityManager->getRepository(Address::class)->findOneBy(['id' => $id]);
 
         if ($address && $address->getUser() == $this->getUser()) {
             $this->entityManager->remove($address);
