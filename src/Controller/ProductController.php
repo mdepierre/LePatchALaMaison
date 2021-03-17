@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
-use App\Repository\ProductRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,10 +23,10 @@ class ProductController extends AbstractController
      */
     public function index(): Response
     {
-        $products = $this->entityManager->getRepository(Product::class)->findAll();
+        $categories = $this->entityManager->getRepository(Category::class)->findCategoriesAndProducts();
 
         return $this->render('product/index.html.twig', [
-            'products' => $products
+            'categories' => $categories
         ]);
     }
 

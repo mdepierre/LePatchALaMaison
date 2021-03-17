@@ -22,11 +22,11 @@ class OrderCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            DateTimeField::new('creation_date'),
-            TextField::new('user.firstname'),
-            TextField::new('user.lastname'),
-            MoneyField::new('total')->setCurrency('EUR'),
-            BooleanField::new('paid'),
+            DateTimeField::new('creation_date', 'Date de création'),
+            TextField::new('user.firstname', "Prénom de l'utilisateur"),
+            TextField::new('user.lastname', "Nom de l'utilisateur"),
+            MoneyField::new('total', 'Total de la commande')->setCurrency('EUR'),
+            BooleanField::new('paid', 'Payée (Oui/Non)'),
         ];
     }
 }

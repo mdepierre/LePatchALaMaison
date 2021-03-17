@@ -53,7 +53,7 @@
 						<h2>Récapitulatif</h2>
 						<p>Nombre d'articles : {{ total_quantity }}</p>
 						<p class="cart-total">Total : {{ (total_price / 100) |number_format(2, ',') }} €</p>
-						<a href="{{ path('order') }}" class="btn btn-success">Valider mon panier</a>
+						<a href="{{ path('cart_validation') }}" class="btn btn-success">Valider mon panier</a>
 					</div>
 				</div>
 			</div>

@@ -6,19 +6,24 @@
 
 <h1> Boutique </h1>
 
-<div class="row product-container">
+{% for category in categories %}
 
-    {% for product in products %}
+<h2 class="mt-4">{{ category.name }}</h2>
+
+<div class="row product-container">
+    {% for product in category.products %}    	
         <div class="col-md-4">
             <div class="product-item text-center">
-                <a href="{{ path('product', {'slug':product.slug}) }}" ><img src="/uploads/{{ product.illustration }}" alt"{{ product.name }}" class="img-fluid"></a>
+                <div class="product-illustration"><a href="{{ path('product', {'slug':product.slug}) }}" ><img src="/uploads/{{ product.illustration }}" alt"{{ product.name }}" class="img-fluid"></a></div>
+                <div>
                 <h2> {{ product.name }} </h2>
                 <p class="product-subtitle"> {{ product.subtitle }} </p>
                 <p class="product-price"> {{ (product.price /100)|number_format(2, ',') }} € </p>
+                </div>
             </div>
         </div>
     {% endfor %}
-
 </div>
+{% endfor %}
 
 {% endblock %}

@@ -30,6 +30,12 @@ class OrderSuccessController extends AbstractController
 
         if($order->getPaid() == 0) {
 
+            $new_stock = $cart->getCartDetails();
+        
+        foreach ($new_stock as $k => $v){                    
+            $new_stock[$k]['product']->setStock($new_stock[$k]['product']->getStock() - $new_stock[$k]['quantity']);
+        }
+
             $cart->remove();
 
             $order->setPaid(1);

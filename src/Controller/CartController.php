@@ -66,4 +66,18 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('cart');
     }
+
+    /**
+     * @Route("/cart/validation ", name="cart_validation")
+     */
+    public function validate(Cart $cart): Response
+    {
+        $final_cart = $cart->getCartDetails();
+        
+        foreach ($final_cart as $k => $v){                    
+            if($final_cart[$k]['quantity'] > $final_cart[$k]['product']->getStock()){
+                return $this->redirectToRoute('cart');}
+        }
+        return $this->redirectToRoute('order');
+    }
 }
