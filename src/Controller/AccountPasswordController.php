@@ -22,7 +22,8 @@ class AccountPasswordController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
-        $notification = null;
+        $notification_success = null;
+        $notification_error = null;
 
         $user = $this->getUser();
         $form = $this->createForm(ChangePasswordType::class, $user);
@@ -39,16 +40,17 @@ class AccountPasswordController extends AbstractController
                 $user->setPassword($password);
                 $this->entityManager->flush();
 
-                $notification = "La modification de votre mot de passe a été prise en compte";
+                $notification_success = "La modification de votre mot de passe a été prise en compte";
             }
             else {
-                $notification = "Le mot de passe actuel saisi est incorrect";
+                $notification_error = "Le mot de passe actuel saisi est incorrect";
             }
         }
 
         return $this->render('account/password.html.twig', [
             'form' => $form->createView(),
-            'notification' => $notification,
+            'notification_success' => $notification_success,
+            'notification_error' => $notification_error
         ]);
     }
 }

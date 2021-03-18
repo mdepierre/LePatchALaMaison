@@ -35,7 +35,9 @@ class AccountAddressController extends AbstractController
 
     public function add(Cart $cart, Request $request): Response
     {
-        $notification = null;
+        $notification_success = null;
+
+        $notification_error = null;
 
         $address = new Address();
 
@@ -54,14 +56,17 @@ class AccountAddressController extends AbstractController
                 return $this->redirectToRoute('order');
             }
             else {
-                $notification = "L'adresse été ajoutée avec succès";
-            }            
-
+                $notification_success = "L'adresse été ajoutée avec succès";
+            }          
+        }
+        else if ($form->isSubmitted()) {
+            $notification_error = "L'adresse saisie est invalide";
         }
 
         return $this->render('account/address_form.html.twig', [
             'form' => $form->createView(),
-            'notification' => $notification
+            'notification_success' => $notification_success,
+            'notification_error' => $notification_error
         ]);
     }
 
@@ -71,7 +76,9 @@ class AccountAddressController extends AbstractController
     
     public function edit(Request $request, $id): Response
     {
-        $notification = null;
+        $notification_success = null;
+
+        $notification_error = null;
 
         $address = $this->entityManager->getRepository(Address::class)->findOneBy(['id' => $id]);
 
@@ -87,12 +94,16 @@ class AccountAddressController extends AbstractController
 
             $this->entityManager->flush();
 
-            $notification = "L'adresse été modifiée avec succès";
+            $notification_success = "L'adresse été modifiée avec succès";
+        }
+        else if ($form->isSubmitted()) {
+            $notification_error = "L'adresse saisie est invalide";
         }
 
         return $this->render('account/address_form.html.twig', [
             'form' => $form->createView(),
-            'notification' => $notification
+            'notification_success' => $notification_success,
+            'notification_error' => $notification_error
         ]);
     }
 

@@ -13,11 +13,16 @@
 		</li>
 	</ul>
 
-	{% if notification %}
-		<div class="alert alert-info">
-			{{ notification }}
-		</div>
-	{% endif %}
+	{% if notification_success %}
+        <div class="alert alert-success">
+            {{ notification_success }}
+        </div>
+    {% endif %}
+    {% if notification_error %}
+        <div class="alert alert-danger">
+            {{ notification_error }}
+        </div>
+    {% endif %}
 
 	<div class="mb-5">
 		{{ form(form) }}

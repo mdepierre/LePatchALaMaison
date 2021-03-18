@@ -21,7 +21,6 @@ class ProductCrudController extends AbstractCrudController
         return Product::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         return [
