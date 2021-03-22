@@ -34,6 +34,15 @@ a:hover {
   text-decoration: underline;
 }
 
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .font-size-custom {
   font-size: 0.7rem;
 }
@@ -153,7 +162,11 @@ Homepage View
 Media Queries
 --------------------------------------------------------------------------------------
 */
-
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+  }
+}
 @media (min-width: 992px) {
   .nav-user-name {
     display: inline;

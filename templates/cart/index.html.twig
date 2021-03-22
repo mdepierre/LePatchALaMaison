@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon panier - Le Patch à la Maison
-{% endblock %}
+{% block title %}Mon panier - Le Patch à la Maison{% endblock %}
 
 {% block content %}
-
 
 	<div class="container">
 		<div class="p-4 mb-5">
@@ -16,8 +14,7 @@
 				<div class="col-lg-8">
 
 					{% set total_price = null %}
-                    {% set total_quantity = null %}
-                     
+                    {% set total_quantity = null %}                     
 
 					{% for product_in_cart in cart %}
 						<div class="row mb-4 shadow p-2 bg-cart-custom">
@@ -33,17 +30,18 @@
 							</div>
 							<div class="col-sm">
 								<div>
-									<div>Qté : <a href="{{ path('decrease_to_cart', { 'id': product_in_cart.product.id }) }}"><i class="far fa-minus-square"></i></a> {{ product_in_cart.quantity }} <a href="{{ path('add_to_cart', { 'id': product_in_cart.product.id }) }}"><i class="far fa-plus-square"></a></i></div>
+									<div>Qté : <a href="{{ path('decrease_to_cart', { 'id': product_in_cart.product.id }) }}"><i class="far fa-minus-square"></i></a>
+									{{ product_in_cart.quantity }}
+									<a href="{{ path('add_to_cart', { 'id': product_in_cart.product.id }) }}"><i class="far fa-plus-square"></a></i></div>
 								</div>
 								<div class="cart-product-price-item">
 									<div class="product-price">{{ ((product_in_cart.product.price * product_in_cart.quantity) / 100) |number_format(2, ',') }} € </div>
 								</div>
 							</div>
-                            <div class="col-sm col-sm-auto">
-                                <a href="{{ path ('delete_to_cart', {'id' : product_in_cart.product.id }) }}" ><i class="far fa-trash-alt"></i></a>
-                            </div>
+              <div class="col-sm col-sm-auto">
+                <a href="{{ path ('delete_to_cart', {'id' : product_in_cart.product.id }) }}" ><i class="far fa-trash-alt"></i></a>
+              </div>
 						</div>
-
                         {% set total_price = total_price + (product_in_cart.product.price * product_in_cart.quantity) %}
                         {% set total_quantity = total_quantity + product_in_cart.quantity %}
 					{% endfor %}

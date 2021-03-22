@@ -11,7 +11,9 @@
 <h2 class="mt-4">{{ category.name }}</h2>
 
 <div class="row product-container">
-    {% for product in category.products %}    	
+    {% for product in category.products %}
+    {% if product.stock>0 %}
+    {# {{ dump(product.stock) }}    	 #}
         <div class="col-md-4">
             <div class="product-item text-center">
                 <div class="product-illustration"><a href="{{ path('product', {'slug':product.slug}) }}" ><img src="/uploads/{{ product.illustration }}" alt"{{ product.name }}" class="img-fluid"></a></div>
@@ -22,6 +24,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     {% endfor %}
 </div>
 {% endfor %}

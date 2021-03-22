@@ -23,9 +23,9 @@ class CategoryRepository extends ServiceEntityRepository
     * @return Category[] Returns an array of Category objects
     */
     
-    public function findCategoriesAndProducts()
+    public function findByCategoriesAndProducts()
     {
-        return $this->createQueryBuilder('c')
+        return $this->createQueryBuilder('c')        
             -> innerJoin(
                 'App\Entity\Product',
                 'p',
@@ -38,16 +38,4 @@ class CategoryRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
-    /*
-    public function findOneBySomeField($value): ?Category
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

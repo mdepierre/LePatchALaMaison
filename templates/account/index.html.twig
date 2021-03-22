@@ -15,13 +15,17 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('admin') }}">Accéder au back-office</a>
         </li>
-        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('account_password') }}">Modifier mon mot de passe </a>
+        </li>
+        {% else %}        
         <li class="nav-item">
             <a class="nav-link" href="{{ path('account_password') }}">Modifier mon mot de passe </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ path('account_address') }}">Ajouter, modifier ou supprimer une adresse</a>
         </li>
+        {% endif %}
         <li class="nav-item active">
             <a class="nav-link" href="#">Déconnexion</a>
         </li>

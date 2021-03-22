@@ -3,21 +3,12 @@
 namespace App\Controller;
 
 use App\Classes\Cart;
-use App\Entity\Product;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
-{
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;        
-    }
-
+{  
     /**
      * @Route("/mon-panier", name="cart")
      */
@@ -75,8 +66,10 @@ class CartController extends AbstractController
         $final_cart = $cart->getCartDetails();
         
         foreach ($final_cart as $k => $v){                    
-            if($final_cart[$k]['quantity'] > $final_cart[$k]['product']->getStock()){
-                return $this->redirectToRoute('cart');}
+            if($final_cart[$k]['quantity'] > $final_cart[$k]['product']->getStock())
+            {
+                return $this->redirectToRoute('cart');
+            }
         }
         return $this->redirectToRoute('order');
     }

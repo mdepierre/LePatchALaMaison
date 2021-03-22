@@ -3,36 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>{% block title %} Le Patch à la Maison {% endblock%}</title>
-
+    <title>{% block title %} Le Patch à la Maison {% endblock %}</title>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/ad5bd95191.js" crossorigin="anonymous"></script> 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/imgs/favicon.ico') }}" />
-
     {% block script_head %}
     {% endblock %}
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-    <!-- Custom styles for this template -->
     <link href="{{asset('assets/css/carousel.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/lepatchalamaison.css')}}" rel="stylesheet">
 </head>
@@ -55,7 +34,9 @@
             <ul class="navbar-nav ml-auto">
                 {% if app.user %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ path('account') }}">Mon compte <span class="nav-user-name fw-light font-size-custom"> ( {{app.user.firstname}} {{app.user.lastname}} ) </span></a>
+                            <a class="nav-link" href="{{ path('account') }}">Mon compte 
+                            <span class="nav-user-name fw-light font-size-custom"> ( {{app.user.firstname}} {{app.user.lastname}} ) </span>
+                            </a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
@@ -75,10 +56,8 @@
 </header>
 
 <main role="main">
-
     {% if block('jumbotron') is defined %}
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <!-- Main jumbotron -->
       <div class="jumbotron jumbotron-fluid">
         <div class="container text-center">
           <h1 class="display-3">Le Patch s'invite à la Maison !</h1>
@@ -87,18 +66,10 @@
         </div>
       </div>
     {% endif %}
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
     <div class="container marketing {% if block('jumbotron') is not defined %}mt-5{% endif %}">
-
         {% block content %}
         {% endblock %}
-
-    </div><!-- /.container -->
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer-custom">

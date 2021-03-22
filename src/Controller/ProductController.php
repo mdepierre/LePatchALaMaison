@@ -23,7 +23,7 @@ class ProductController extends AbstractController
      */
     public function index(): Response
     {
-        $categories = $this->entityManager->getRepository(Category::class)->findCategoriesAndProducts();
+        $categories = $this->entityManager->getRepository(Category::class)->findByCategoriesAndProducts();
 
         return $this->render('product/index.html.twig', [
             'categories' => $categories
